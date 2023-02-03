@@ -18,8 +18,15 @@ def get_headers():
 def get(path: str, params: object = {}):
     url = BASE_URL + path
     res = requests.get(url, params=params, headers=get_headers())
-    data = res.json()
+    if res.status_code >= 200 and res.status_code < 300:
+        data = res.json()
+        return {
+            "data": data,
+            "status_code": res.status_code,
+            "ok": True
+        }
     return {
-        "data": data,
-        "status_code": res.status_code
+        "error": res.text,
+        "status_code": res.status_code,
+        "ok": False
     }
