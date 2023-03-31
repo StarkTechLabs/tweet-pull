@@ -7,3 +7,11 @@ Collection of python code to pull data from twitter
 - `python3 -m venv .venv` create virutal env with python3
 - `source .venv/bin/activate` activate virtual env
 - `pip install -r requirements.txt` install required dependencies
+
+### Environment Variables
+
+- TWITTER_APP_TOKEN
+
+### Running
+
+`python run.py -d`

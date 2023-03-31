@@ -14,12 +14,14 @@ def tweet_by_id(id: str):
 def tweets_by_user(username: str):
     url_path = "/tweets/search/recent"
     params = {
-        "query": "from:{0}".format(username),
+        "query": "from:{0} -is:retweet".format(username),
     }
     result = get(url_path, params=params)
     if not result["ok"]:
         raise Exception(result["error"])
-    return result["data"]["data"]
+    if "data" in result and "data" in result["data"]:
+        return result["data"]["data"]
+    return []
 
 
 if __name__ == "__main__":
